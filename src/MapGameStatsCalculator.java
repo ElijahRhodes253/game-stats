@@ -50,10 +50,12 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
    * 
    * @param person the name of the person to query
    * @return the number of games the person played
+   * @throws NoSuchElementException if the person does not exist in the score data
    */
   @Override
   public int gameCount(String person) {
-    return gameCounts.get(person);
+    checkPerson(person);
+    return gameCounts.get(person); 
   }
 
   /**
