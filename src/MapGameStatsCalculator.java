@@ -120,6 +120,10 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
         hScore = newMap.get(x);
         hName = x;
       }
+      else if(newMap.get(x) == hScore)
+      {
+        if(x.compareTo(hName) < 0){hName = x;}
+      }
     }
 
     return hName;
@@ -183,6 +187,10 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
       {
         hScore = avgMap.get(x);
         hName = x;
+      }
+      else if(avgMap.get(x) == hScore)
+      {
+        if(x.compareTo(hName) < 0){hName = x;}
       }
     }
 
