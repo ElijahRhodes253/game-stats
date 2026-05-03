@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +21,7 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
    * }
    */
   private Map<String, Integer> gameCounts;
-
+  private Map<String, List<Integer>> allScores;
   // For some waves you will need to add more private instance variables here!
 
 
@@ -27,12 +29,23 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
   public MapGameStatsCalculator(Scanner scoreInput) {
     gameCounts = new HashMap<>();
     Map<String, Integer> scoreMap = new HashMap<>();
+    allScores = new HashMap<>();
     while(scoreInput.hasNext()) {
       
       String name = scoreInput.next();
       int score = scoreInput.nextInt();
       scoreMap.put(name, score);
       
+      if(allScores.containsKey(name))
+      {
+        allScores.get(name).add(score);
+      }
+      else
+      {
+        allScores.put(name, new ArrayList<>(score));
+        allScores.get(name).add(score);
+      }
+
       if(gameCounts.containsKey(name))
       {
         gameCounts.put(name, gameCounts.get(name) + 1);
@@ -41,7 +54,10 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
       {
         gameCounts.put(name, 1); 
       }
-      // TODO: add logic here to use the name and score to fill your map(s)!
+    }
+    for(String x : allScores.keySet())
+    {
+      Collections.sort(allScores.get(x), Collections.reverseOrder());
     }
   }
 
@@ -67,11 +83,11 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
    */
   @Override
   public int highScore(String person) {
-    // TODO: remove this exception once you have implemented your method!
-    throw new UnsupportedOperationException("Unimplemented method 'highScore'");
 
     // Uncomment this and have it as your first line once you remove the UnsupportedOperationException
-    //checkPerson(person);
+    checkPerson(person);
+    return allScores.get(person).get(0);
+
   }
 
   /**
