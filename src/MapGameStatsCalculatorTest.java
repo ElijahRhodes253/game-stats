@@ -72,6 +72,28 @@ public class MapGameStatsCalculatorTest {
     assertThrows(NoSuchElementException.class, act);
   }
 
+  //Custom tests for gameCount()
+  //Can't figure this out
+  /*
+  @Test
+  public void gameCountCustomTestEmptyString()
+  {
+    String scoreData = "Nupur\n"
+        + "Baya 30\n"
+        + "Xinting 25\n"
+        + "Nupur 40\n"
+        + "Baya 50\n"
+        + "Nupur 20\n"
+        + "Baya 60\n"
+        + "Nupur 30\n";
+
+    GameStatsCalculator calculator = new MapGameStatsCalculator(new Scanner(scoreData));
+
+    Executable act = () -> calculator.gameCount("");
+
+    assertThrows(NoSuchElementException.class, act);
+  }
+  */
   // highScore tests
 
   @Test
