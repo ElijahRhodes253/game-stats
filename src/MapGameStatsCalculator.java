@@ -101,11 +101,28 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
    */
   @Override
   public String highestScorer() {
-    // TODO: remove this exception once you have implemented your method!
-    throw new UnsupportedOperationException("Unimplemented method 'highestScorer'");
+    
+    checkScoreData();
+    Map<String, Integer> newMap = new HashMap<>();
 
-    // Uncomment this and have it as your first line once you remove the UnsupportedOperationException
-    //checkScoreData();
+    for(String x : allScores.keySet())
+    {
+      newMap.put(x, highScore(x));
+    }
+
+    int hScore = 0;
+    String hName = "";
+
+    for(String x : newMap.keySet())
+    { 
+      if(newMap.get(x) > hScore)
+      {
+        hScore = newMap.get(x);
+        hName = x;
+      }
+    }
+
+    return hName;
   }
 
   /**
